@@ -1,0 +1,9 @@
+# Optional parallel sparse-direct backend; core versions remain in requirements-lock.txt.
+pypardiso==0.4.7
+mkl==2026.1.0
+intel-openmp==2026.1.2
+intel-cmplr-lib-ur==2026.1.2
+onemkl-license==2026.1.0
+tbb==2023.1.0
+tcmlib==1.5.0
+umf==1.1.0

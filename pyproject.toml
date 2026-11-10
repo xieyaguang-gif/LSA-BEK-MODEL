@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "llsa-python"
+version = "0.2.0"
+description = "Local linear stability of rotating-disk boundary layers"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.23", "scipy>=1.10"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+plot = ["matplotlib>=3.6"]
+pardiso = ["pypardiso==0.4.7"]
+
+[project.scripts]
+llsa = "llsa.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+"llsa.secondary" = ["references.json"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

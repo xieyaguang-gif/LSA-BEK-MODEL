@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>β̂=20 是什么：主波与二次扰动</title>
+<style>
+:root{color-scheme:light;--blue:#17618f;--orange:#c0522c;--purple:#6551a4;--line:#dce3e8}
+*{box-sizing:border-box}
+body{margin:0;background:#f4f6f8;color:#192c39;font:16px/1.7 system-ui,"Noto Sans CJK SC",sans-serif}
+main{max-width:1120px;margin:auto;padding:30px 24px 60px}
+h1{font-size:32px;line-height:1.4;margin:4px 0 12px}h2{font-size:23px;margin:4px 0 12px}h3{font-size:17px;margin:0 0 3px}
+p{margin:8px 0}.lead{font-size:18px}.eyebrow{color:var(--blue);font-size:14px;font-weight:700}
+.card{background:white;border:1px solid var(--line);border-radius:12px;padding:22px;margin-top:22px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0}
+.stat{background:white;border:1px solid var(--line);border-radius:10px;padding:15px}
+.stat strong{display:block;font-size:28px;line-height:1.4}.stat span{font-size:14px;color:#536877}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;background:#f4f7fa;border-radius:8px;padding:16px;margin:14px 0}
+label{display:block;font-size:14px}input[type=range]{width:100%;accent-color:var(--blue);cursor:pointer}
+input[type=checkbox]{accent-color:var(--blue)}button,select{font:inherit;border:1px solid #b6c5d0;border-radius:6px;background:#fff;padding:6px 12px;color:#192c39;cursor:pointer}
+button.primary{background:var(--blue);color:white;border-color:var(--blue)}.buttons{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.note{font-size:14px;color:#536877}.formula{background:#f5f7fa;border-left:3px solid var(--purple);padding:12px 16px;font-family:Georgia,"Noto Sans CJK SC",serif;font-size:18px;overflow-wrap:anywhere}
+.field{border-top:1px solid #edf0f2;padding-top:12px}.field canvas{width:100%;height:auto;display:block}
+.colorbar{width:65%;height:14px;margin:10px auto 0;background:linear-gradient(90deg,#164b86,#4d93c7,#f8f8f8,#e78b75,#a52d32);border:1px solid #cbd4da}
+.scale{text-align:center;font-size:13px}.status{padding:8px 12px;border-radius:6px;background:#edf4f9;font-size:14px;margin:12px 0}
+.explainer{width:100%;height:auto;display:block}.two{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:8px}
+li{margin:5px 0}a{color:var(--blue)}code{overflow-wrap:anywhere;font-size:13px}
+.caption{font-size:14px;color:#465c6c;margin-bottom:12px}
+@media(max-width:650px){main{padding:18px 12px}h1{font-size:25px}.card{padding:15px}.controls,.two{grid-template-columns:1fr}.stats{gap:7px}.stat{padding:10px}.stat strong{font-size:22px}.stat span{font-size:12px}}
+</style>
+</head>
+<body>
+<main>
+<div class="eyebrow">真实计算数据 · Ro=−1 自由旋转盘 · R=510</div>
+<h1>先有 68 周期的主波，再看二次扰动如何改变这列涡</h1>
+<p class="lead"><b>β̂=20 描述已有周期结构上的附加相位变化。</b>完整二次扰动还会跟随主波周期变化，所以不能直接把它画成“另加 20 条涡”。</p>
+<div class="stats">
+<div class="stat"><strong>5.294°</strong><span>相邻主波周期的周向间隔：360°/68</span></div>
+<div class="stat"><strong>105.882°</strong><span>跨过一个主波周期，二次相位前进的角度</span></div>
+<div class="stat"><strong>17 个主波</strong><span>二次相位走完 5 圈，组合图案在 90° 后重复</span></div>
+</div>
+<section class="card">
+<h2>1. 调节二次幅值，观察实际叠加</h2>
+<p>把 r=490～530 的窄环带展开；r、z 均已用 δ 无量纲化。颜色表示法向速度相对层流的偏差 <b>w−W(z)</b>。红色是向上偏差，蓝色是向下偏差；这些是速度条带，不是涡核等值面。</p>
+<div class="controls">
+<label>初始二次幅值 a：<b id="amp-label"></b>
+<input id="amplitude" type="range" min="0" max="0.4" step="0.01" value="0.06"></label>
+<label>时间 t（单位 Ω⁻¹）：<b id="time-label"></b>
+<input id="time" type="range" min="0" max="2" step="0.01" value="0"></label>
+<label>离盘高度 z（以 δ 为长度单位）：
+<select id="height"><option value="0">0.4</option><option value="1">0.8</option><option value="2">1.2</option><option value="3" selected>1.6</option><option value="4">2.0</option><option value="5">2.8</option><option value="6">4.0</option><option value="7">6.0</option></select></label>
+<div><label><input id="comoving" type="checkbox" checked> 随主波旋转观察，让原有涡列静止</label>
+<label><input id="growth" type="checkbox" checked> 按真实增长率 σ=0.856178 增长</label></div>
+</div>
+<div class="buttons"><button id="play" class="primary">播放发展过程</button><button id="reset">重置</button><button id="primary-only">只看主波</button><button id="illustrate">显示 25% 叠加</button><span class="note">建议先用“只看主波”，再用“显示 25% 叠加”。</span></div>
+<div id="status" class="status"></div>
+<p class="caption">a 是在 r=510、z=1.6、t=0 处，二次与主波<b>法向速度周向 RMS</b>之比；它是显示幅值，不是稳定性求解器预测的二次饱和幅值。切换高度时仍使用同一个模态归一化。</p>
+<div class="field"><h3 style="color:var(--blue)">A · 非线性饱和主波</h3><canvas id="primary" width="1000" height="200"></canvas></div>
+<div class="field"><h3 style="color:var(--purple)">B · 完整二次扰动</h3><canvas id="secondary" width="1000" height="200"></canvas></div>
+<div class="field"><h3 style="color:var(--orange)">C · 主波 + 二次扰动</h3><canvas id="combined" width="1000" height="200"></canvas></div>
+<div class="colorbar"></div><div class="scale" id="scale"></div>
+<p class="note">三幅图共享当前色标，范围随显示场自动调整；横纵距离保持物理比例。复波数 α̂ 的虚部带来 exp[0.0369809(r−510)] 的空间权重，所以二次扰动外侧更强。当前显示是冻结 R=510 系数的局部模态重构。</p>
+</section>
+<section class="card">
+<h2>2. 为什么 20 不等于“二次涡的条数”？</h2>
+<p>主波用相位 φ=α(r−510)+68θ−50.5t 描述，并包含 n=−5…5 的完整非线性谐波。二次扰动是：</p>
+<div class="formula">w₂ = a Re{ exp[i(α̂(r−510)+20θ−ω̂t)] × Σ<sub>n=−5…5</sub> ŵ<sub>n</sub>(z) exp(inφ) }</div>
+<div class="two" style="margin-top:16px"><div><h3>外面的因子：涡与涡之间的相位</h3>
+<p>固定半径与时间，跨到相邻主波的同一相位位置，周期函数不变，但二次复振幅多乘 exp[i·2π·20/68]。取实部后，相邻涡就会受到不同正负、不同强弱的扰动。</p>
+<p>18° 是外面 exp(i20θ) 因子的周期；<b>不是完整二次场的重复周期</b>。</p></div>
+<div><h3>里面的周期函数：每个主波内部的结构</h3>
+<p>Σ ŵ<sub>n</sub>exp(inφ) 给出二次扰动在一个主波单元内的分布，包括速度剪切区、相位位置和离盘高度上的变化。它来自求解器，不能用一个常数代替。</p>
+<p>乘开后实际周向谐波是 ℓ<sub>n</sub>=20+n×68，并且各谐波的径向波数、频率也一起变化。</p></div></div>
+<img class="explainer" src="__PHASE_FIGURE__" alt="主波周期、Floquet 相位、实际叠加剖面及周向侧带能量">
+<p class="caption">本图固定 r=510、z=1.6、t=0、a=25%。第二行仅是附加相位因子的示意，第三行才是完整计算模态的真实叠加。第四行是三个速度分量沿 z 积分后的二次模态能量份额。</p>
+<p>本算例 ℓ=−48 占约 <b>65.2%</b>，ℓ=20 占约 <b>21.4%</b>。负号表示带符号的 Fourier 指数，不是负的条纹数量；传播方向还需结合相应频率判断。</p>
+<details><summary>更进一步：Floquet 参数的代表值不是唯一的</summary>
+<p>在无限侧带展开中，若同时把 (α̂,β̂,ω̂) 平移 m(α,β,ω)，并重新编号 ŵ<sub>n</sub>，可表示同一扰动。因此 β̂ 也类似 Bloch 准波数。这里固定论文所用 β̂=20 的代表值。只改 β̂、而不同时改变 α̂、ω̂ 与谐波编号，通常得到另一个问题；有限截断还需要重新检查。</p></details>
+</section>
+<section class="card">
+<h2>3. 这张图计算了什么</h2>
+<table>
+<tr><th>主波</th><td>R=510，β=68，ω=50.5，α=0.346158381；N=60，H=5，parallel 均值</td></tr>
+<tr><th>二次模态</th><td>β̂=20，α̂=−0.00163221046−0.03698086207i，ω̂=8.606689723+0.856178081i；K=5，continuity 壁面</td></tr>
+<tr><th>主波与二次相位</th><td>共同平移主波相位，使参考位置的主波 w 最大；二次模态整体相位选为该位置正向。整体相位任意，不影响增长率。</td></tr>
+<tr><th>随主波旋转</th><td>θ′=θ−(50.5/68)t；这里观察到的二次相位频率为 ω̂ᵣ−20(50.5/68)，增长率保持不变。</td></tr>
+</table>
+<p>二次特征函数由同一 N=60 主波重新求得，未用示意正弦波代替。这里只做<strong>饱和主波 + 线性二次模态</strong>；显示较大幅值有助于看清形变，不能用于预测后续二次饱和或湍流。</p>
+<p class="note">本图沿用当前 parallel 主波，其均值闭合仍有技术报告列出的限制；与 Pier 表 3 的增长率差异也尚未解决。此展示解释当前算例中 β̂ 的含义，不增加文献复现的验证结论。</p>
+<p class="note">离线文件：所有数值、图片和程序均已内嵌，无网络依赖。</p>
+</section>
+</main>
+<script id="mode-data" type="application/json">__MODE_DATA__</script>
+<script>
+'use strict';
+const D=JSON.parse(document.getElementById('mode-data').textContent);
+const el=id=>document.getElementById(id);
+const NX=640, NY=100, XMIN=-20, XMAX=20, THMAX=Math.PI/5;
+const primaryGrid=new Float64Array(NX*NY), sr=new Float64Array(NX*NY), si=new Float64Array(NX*NY);
+const secondaryGrid=new Float64Array(NX*NY), combinedGrid=new Float64Array(NX*NY);
+let cache='',running=false,lastDraw=0;
+function reconstruct(z,phaseTime){
+  const key=z+','+phaseTime.toFixed(8);
+  if(cache===key)return;
+  cache=key;
+  for(let j=0;j<NY;j++){
+    const x=XMAX-(XMAX-XMIN)*j/(NY-1);
+    for(let i=0;i<NX;i++){
+      const th=THMAX*i/(NX-1),phi=D.alpha*x+D.beta*th-D.omega*phaseTime;
+      let p=0,re=0,im=0;
+      for(let h=0;h<D.harmonics.length;h++){
+        const angle=D.harmonics[h]*phi,c=Math.cos(angle),s=Math.sin(angle);
+        p+=D.primary_real[h][2][z]*c-D.primary_imag[h][2][z]*s;
+        re+=D.secondary_real[h][2][z]*c-D.secondary_imag[h][2][z]*s;
+        im+=D.secondary_real[h][2][z]*s+D.secondary_imag[h][2][z]*c;
+      }
+      const phase=D.alpha_hat[0]*x+D.beta_hat*th,co=Math.cos(phase),sn=Math.sin(phase);
+      const weight=Math.exp(-D.alpha_hat[1]*x)/D.primary_w_rms_reference,k=j*NX+i;
+      primaryGrid[k]=p/D.primary_w_rms_reference;
+      sr[k]=(re*co-im*sn)*weight;si[k]=(re*sn+im*co)*weight;
+    }
+  }
+}
+const stops=[[22,75,134],[77,147,199],[248,248,248],[231,139,117],[165,45,50]];
+function drawField(id,values,limit,comoving){
+  const canvas=el(id),ctx=canvas.getContext('2d');
+  const raster=document.createElement('canvas');raster.width=NX;raster.height=NY;
+  const rc=raster.getContext('2d'),img=rc.createImageData(NX,NY);
+  for(let i=0;i<values.length;i++){
+    const v=Math.max(0,Math.min(4,(values[i]/limit+1)*2)),segment=Math.min(3,Math.floor(v)),f=v-segment;
+    for(let c=0;c<3;c++)img.data[4*i+c]=Math.round(stops[segment][c]*(1-f)+stops[segment+1][c]*f);
+    img.data[4*i+3]=255;
+  }
+  rc.putImageData(img,0,0);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  const left=70,top=8,width=900,height=width*(XMAX-XMIN)/(D.radius*THMAX);
+  ctx.imageSmoothingEnabled=false;ctx.drawImage(raster,left,top,width,height);
+  ctx.strokeStyle='#253844';ctx.lineWidth=1;ctx.strokeRect(left,top,width,height);
+  ctx.font='15px system-ui';ctx.fillStyle='#253844';ctx.textAlign='right';
+  for(const x of [20,0,-20]){
+    const y=top+(20-x)/40*height;
+    ctx.fillText(String(D.radius+x),left-9,y+5);
+  }
+  ctx.textAlign='left';ctx.fillText('r',25,top+height/2);
+  ctx.textAlign='center';
+  for(let deg=0;deg<=36;deg+=6){
+    const px=left+width*deg/36;
+    ctx.fillText(deg+'°',px,top+height+22);
+  }
+  ctx.fillText(comoving?'周向角 θ′（随主波旋转）':'周向角 θ（惯性系）',left+width/2,top+height+49);
+}
+function render(){
+  const z=Number(el('height').value),t=Number(el('time').value),a=Number(el('amplitude').value);
+  const moving=el('comoving').checked,growth=el('growth').checked;
+  reconstruct(z,moving?0:t);
+  const factor=a*Math.exp(growth?D.omega_hat[1]*t:0);
+  const frequency=D.omega_hat[0]-(moving?D.beta_hat*D.omega/D.beta:0);
+  const c=Math.cos(frequency*t),s=Math.sin(frequency*t);
+  let limit=.01;
+  for(let k=0;k<primaryGrid.length;k++){
+    secondaryGrid[k]=factor*(sr[k]*c+si[k]*s);
+    combinedGrid[k]=primaryGrid[k]+secondaryGrid[k];
+    limit=Math.max(limit,Math.abs(primaryGrid[k]),Math.abs(secondaryGrid[k]),Math.abs(combinedGrid[k]));
+  }
+  limit*=1.02;
+  drawField('primary',primaryGrid,limit,moving);drawField('secondary',secondaryGrid,limit,moving);
+  drawField('combined',combinedGrid,limit,moving);
+  el('amp-label').textContent=(a*100).toFixed(0)+'%';
+  el('time-label').textContent=t.toFixed(2);
+  el('status').textContent='当前 z='+D.z[z].toFixed(1)+'；二次幅值增长倍数 '+(a>0?factor/a:Math.exp(growth?D.omega_hat[1]*t:0)).toFixed(2)+
+    '；参考位置的二次/主波法向速度 RMS 比 '+(factor*100).toFixed(1)+'%。'+
+    (factor>.3?' 当前放大幅值用于观察形变，超出很小扰动时不能当作非线性预测。':'');
+  el('scale').textContent='−'+limit.toFixed(2)+'　←　(w−W) / 参考主波 w 的 RMS　→　+'+limit.toFixed(2)+'（共同色标）';
+}
+function stop(){running=false;el('play').textContent='播放发展过程';}
+function tick(now){
+  if(!running)return;
+  if(now-lastDraw>95){
+    let t=Number(el('time').value)+(now-lastDraw)*.00025;
+    if(t>=2){t=2;stop();}
+    el('time').value=t.toFixed(3);lastDraw=now;render();
+  }
+  if(running)requestAnimationFrame(tick);
+}
+for(const id of ['amplitude','time','height','comoving','growth'])el(id).addEventListener('input',render);
+el('play').addEventListener('click',()=>{
+  if(running){stop();return;}
+  if(Number(el('time').value)>=2)el('time').value='0';
+  running=true;lastDraw=performance.now();
+  el('play').textContent='暂停';requestAnimationFrame(tick);
+});
+el('reset').addEventListener('click',()=>{
+  stop();el('time').value='0';el('amplitude').value='0.06';el('height').value='3';
+  el('growth').checked=true;el('comoving').checked=true;cache='';render();
+});
+el('primary-only').addEventListener('click',()=>{stop();el('amplitude').value='0';render();});
+el('illustrate').addEventListener('click',()=>{
+  stop();el('time').value='0';el('amplitude').value='0.25';el('height').value='3';render();
+});
+render();
+window.secondaryVisualization={render,data:D,primary:primaryGrid,secondary:secondaryGrid,combined:combinedGrid};
+</script>
+</body>
+</html>
