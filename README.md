@@ -2,7 +2,7 @@
 
 Python research code for stability and nonlinear rotating-wave calculations in the Bödewadt–Ekman–von Kármán (BEK) family of rotating boundary layers. The Python package is named `llsa`.
 
-This repository is a source-only snapshot of the `llsa_python` research project. It contains the numerical implementation, tests, and example/campaign drivers. Simulation results, saved flow fields, original reference datasets, figures, papers, virtual environments, and caches are excluded.
+This repository contains the numerical implementation, tests, and example/campaign drivers from the `llsa_python` research project, together with a compact paper dataset. Large raw flow fields, solver histories, original external reference datasets, manuscript files, environments, and caches are excluded.
 
 ## Contents
 
@@ -12,6 +12,10 @@ This repository is a source-only snapshot of the `llsa_python` research project.
 - `src/llsa/secondary/references.json`: small packaged literature-reference constants required by the validation module.
 
 The global nonlinear formulation computes rotating-wave branches for specified harmonic truncations, domain boundaries, and damping conditions. A computed branch does not by itself establish temporal stability or turbulent transition.
+
+## Paper data
+
+[`datasets/bek_negative_ro/`](datasets/bek_negative_ro/) contains compact numerical data underlying Figures 1-4 and Tables I-II of the negative-Rossby-number BEK study: 11 cases, 224 branch points, field projections and damping-response envelopes, plus standalone plotting scripts. See its README for definitions and reproduction commands. No new flow solve is required to redraw the figures.
 
 ## Installation
 
@@ -45,10 +49,10 @@ OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 MKL_NUM_THREADS=1 \
   -k 'not legacy_table_layouts_and_domain and not archived_matlab_values'
 ```
 
-Some tests and historical campaign/postprocessing drivers need external base-flow tables, saved fields, reference PDFs, or local plotting/QA utilities. Those inputs are intentionally absent from this source-only repository. In particular, the two excluded tests above need the original `data/` reference tables. Archived absolute paths in a few historical example drivers should be configured for the user's environment before running them.
+Some tests and historical campaign/postprocessing drivers need external base-flow tables, saved fields, reference PDFs, or local plotting/QA utilities. Those historical inputs are not part of the compact paper dataset. In particular, the two excluded tests above need the original `data/` reference tables. Archived absolute paths in a few historical example drivers should be configured for the user's environment before running them.
 
 ## Reproducibility and citation
 
-The repository provides the source implementation. Reproducing a particular paper figure additionally requires its parameter choices and any corresponding input fields or continuation states. Cite the repository URL and the exact commit used in a calculation:
+The repository provides the source implementation and the compact negative-Rossby-number paper dataset. The data README maps the released inputs to each figure and table. Cite the repository URL and the exact commit used in a calculation:
 
 https://github.com/xieyaguang-gif/LSA-BEK-MODEL

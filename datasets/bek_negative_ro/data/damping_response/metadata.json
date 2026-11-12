@@ -1,0 +1,50 @@
+{
+  "rows": [
+    {
+      "strength": 14,
+      "N": 32,
+      "H": 5,
+      "W": 49.26748523834614,
+      "Rout": 855.5733626621944,
+      "a": 732.4046495663291,
+      "linear_a_c": 727.1271606856054,
+      "linear_Rout_c": 850.2958737814707,
+      "diagnostic": {
+        "front": 702.5410540890983,
+        "unique_downcrossing": true,
+        "no_upcrossing": true
+      }
+    },
+    {
+      "strength": 28,
+      "N": 32,
+      "H": 5,
+      "W": 49.26748523834614,
+      "Rout": 855.5733626621944,
+      "a": 732.4046495663291,
+      "linear_a_c": 730.6221698754471,
+      "linear_Rout_c": 853.7908829713124,
+      "diagnostic": {
+        "front": 702.6359842943547,
+        "unique_downcrossing": true,
+        "no_upcrossing": true
+      }
+    },
+    {
+      "strength": 56,
+      "N": 32,
+      "H": 5,
+      "W": 49.26748523834614,
+      "Rout": 855.5733626621944,
+      "a": 732.4046495663291,
+      "linear_a_c": 733.6329881425734,
+      "linear_Rout_c": 856.8017012384387,
+      "diagnostic": {
+        "front": 702.7376002171411,
+        "unique_downcrossing": true,
+        "no_upcrossing": true
+      }
+    }
+  ],
+  "array_sha256": "d236bc156104e132f30971a9a7c6e6a31c05ecf5da51d1a64f7f5a7a296b8135"
+}

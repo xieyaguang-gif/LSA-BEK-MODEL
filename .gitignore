@@ -49,3 +49,9 @@ htmlcov/
 .agents/
 id_rsa*
 id_ed25519*
+
+# Compact, reviewed paper-data release (generated figures stay ignored)
+!datasets/bek_negative_ro/*.csv
+!datasets/bek_negative_ro/data/wave_structure/projections.npz
+!datasets/bek_negative_ro/data/damping_response/profiles.npz
+/datasets/bek_negative_ro/figures/

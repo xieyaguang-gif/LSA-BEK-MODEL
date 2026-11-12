@@ -1,0 +1,73 @@
+{
+  "schema": "bek-paper-data-v1",
+  "files": {
+    "README.md": {
+      "bytes": 4554,
+      "sha256": "432dfc817216c95f2959f5e765727fda2b13ecd8968072c55df23895507d675b"
+    },
+    "branches.csv": {
+      "bytes": 19912,
+      "sha256": "6ed51dc1a8f27ec7df2ca41b110662371efbf658a8cc2b199d89561667e1a09e"
+    },
+    "data/benchmark_ro0751.json": {
+      "bytes": 11205,
+      "sha256": "d9c235353460b3e15453c89d024d65bedc8c75a7ef78a1b0ec14dffa6113d4ac"
+    },
+    "data/benchmark_ro_m1.json": {
+      "bytes": 11968,
+      "sha256": "7982a5c44ae75e2b239016e07e839db7fc218b9d46bd91251734190c1786d94c"
+    },
+    "data/damping_response/metadata.json": {
+      "bytes": 1218,
+      "sha256": "8ca73be9f08ec4babfaa7d6ae53de391aa91b99f600393af8913eaba2ba724d8"
+    },
+    "data/damping_response/profiles.npz": {
+      "bytes": 40186,
+      "sha256": "d236bc156104e132f30971a9a7c6e6a31c05ecf5da51d1a64f7f5a7a296b8135"
+    },
+    "data/evidence.json": {
+      "bytes": 32043,
+      "sha256": "7335bf0a031212f93e69a22b58b0f1cdb68d5b60ca75b4350c5378e2e0af63d0"
+    },
+    "data/revision_diagnostics/common_diagnostics.json": {
+      "bytes": 7372,
+      "sha256": "aa4f9516752d665141b7e39eab82a31c4b0b3fa2d98f694f853cd4817f930e8c"
+    },
+    "data/wave_structure/metadata.json": {
+      "bytes": 1692,
+      "sha256": "a45663673be4670baa0aac3bf1dea4db9ddea0e4a9a3f1200a784d9cc9e0d1cb"
+    },
+    "data/wave_structure/projections.npz": {
+      "bytes": 1713402,
+      "sha256": "7f736f0b78749d65a0dc127c0144bfdddae1b3659ab994156e9f1e4d1c50de2c"
+    },
+    "plot_damping_response.py": {
+      "bytes": 3638,
+      "sha256": "8d19ee2071c727f2bb63e9545301f992a30528df0e5c846e0ec580eabdce789e"
+    },
+    "plot_figures.py": {
+      "bytes": 15041,
+      "sha256": "2370239995468466fd1b01132591e5f81aee622859c64c6a33000bf7b1d469ff"
+    },
+    "plot_wave_structure.py": {
+      "bytes": 6574,
+      "sha256": "35bd19de523534b1c19424e8c407306fc5f1fe0f76a4a4278b0cad1521e6aec7"
+    },
+    "provenance.json": {
+      "bytes": 3244,
+      "sha256": "ba7041d3039a4d51e372d7cc8239ce2800573108d47eb91841d07ba58eba04fb"
+    },
+    "resolution_checks.csv": {
+      "bytes": 1370,
+      "sha256": "0427dc6626a7e3b9c9664ff3d25c0d972656ff2b29db8dc822bbfa3a190655d6"
+    },
+    "scalar_results.csv": {
+      "bytes": 3086,
+      "sha256": "de510cd8968b3a6b1f275eb651a78d2e25962c47799ba6c90bd81d1cd667a241"
+    },
+    "verify.py": {
+      "bytes": 1632,
+      "sha256": "1434eb178e41b7c8df2bb1d3f91b890fa5f6b3977b7a857e36c6cb628756e870"
+    }
+  }
+}

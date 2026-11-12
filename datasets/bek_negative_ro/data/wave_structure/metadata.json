@@ -1,0 +1,40 @@
+{
+  "wave": {
+    "Ro": -0.5,
+    "beta": 109,
+    "N": 40,
+    "H": 5,
+    "zstar": 1.3,
+    "linear_Rout": 853.7733464825245,
+    "nonlinear_Rout": 855.5733626621944,
+    "R_ca": 624.9445251486933,
+    "linear_front": 716.5521936570777,
+    "nonlinear_front": 702.8280954073318,
+    "second_harmonic_front": 700.5167130072267,
+    "linear_a": 730.6046333866592,
+    "nonlinear_a": 732.4046495663291,
+    "linear_display_scale": 0.6240834751449377,
+    "linear_normalization_region": [
+      492.67485238346137,
+      730.6046333866592
+    ],
+    "linear_normalization": "Scale |v_L| so its pre-sponge maximum equals the maximum of |v_1| in the shared pre-sponge radial interval. This affects display only, not growth-rate diagnostics.",
+    "field_phase": 0.0,
+    "field_phase_definition": "phi=beta*theta-omega*t=0 in the saved phase convention; panel b is the fundamental contribution 2 Re(v_1 exp(i phi)).",
+    "field_projection_R_support": [
+      650.0,
+      815.0
+    ],
+    "field_projection_z_support": [
+      0.0,
+      8.0
+    ],
+    "field_projection": "Every native R node in window; barycentric interpolation from N+1=41 Chebyshev nodes to 161 display z nodes. No radial interpolation or smoothing.",
+    "coefficient_convention": "Scaled azimuthal coefficients v_j; physical dimensionless velocity perturbation is R times the reconstructed coefficient.",
+    "mean_max_abs_in_display": 0.047633848536154384,
+    "fundamental_max_abs_in_display": 0.07074030786138705,
+    "outlet_mean_abs_at_zstar": 0.00314230749131046,
+    "outlet_fundamental_abs_at_zstar": 7.53090357498913e-12
+  },
+  "array_sha256": "7f736f0b78749d65a0dc127c0144bfdddae1b3659ab994156e9f1e4d1c50de2c"
+}

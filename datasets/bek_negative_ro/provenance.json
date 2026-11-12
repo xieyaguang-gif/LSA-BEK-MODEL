@@ -1,0 +1,68 @@
+{
+  "title": "Local and global instability of BEK boundary layers at negative Rossby numbers: linear thresholds and nonlinear branches",
+  "release_date": "2026-11-12",
+  "scope": "Frozen numerical results for Figures 1-4 and Tables I-II; no flow or eigenvalue solves are required to reproduce the figures.",
+  "selection": {
+    "cases": 11,
+    "regular_survey_cases": 9,
+    "physical_reference_cases": [
+      -1.0,
+      -0.751
+    ],
+    "branch_points": 224,
+    "table_II_rows": 7
+  },
+  "source_fingerprints": {
+    "paper_data/evidence.json": "498102de108a53760e2804718e65e44b01890a864f037fa2bb476836c6fda6f2",
+    "paper_data/revision_diagnostics/common_diagnostics.json": "88eff4671a7d4ca8bf088b04a76459aa9b49ebe5573226d5c7dda138761708cb",
+    "paper_data/benchmark_ro_m1.json": "4366fa5be2a540b21270eaa9854853d24614913fcbf28d870279253d7859a3b0",
+    "paper_data/benchmark_ro0751.json": "5b02d7e2e6448e16600adfe54a300399c26505744d08617c9d512fb04315906a",
+    "paper_data/revision_state_table.json": "ac30f47138ce16a91b54a233937b95ec8592e6d79f1aafe9191b14f8b8f792e7",
+    "paper_data/wave_structure/metadata.json": "5e77f7268a17ab35d9e7a7b4084c4faf0ed6bebd4514d16003319c864bcbb6ab",
+    "paper_data/damping_response/metadata.json": "edd992d3e1f0a7d6f22945acc70d0a88c464e65596ca537adf1fbe1eee625868",
+    "paper_data/wave_structure/projections.npz": "187b207c6eb42949235d4d1a815a357b044e47c998461250545027b883e1efea",
+    "paper_data/damping_response/profiles.npz": "d236bc156104e132f30971a9a7c6e6a31c05ecf5da51d1a64f7f5a7a296b8135",
+    "paper_data/validation/ro_m0p100/nonlinear_front_consistency.json": "47502addd75fe452d17870c09fc25c71ba7abb0a3f45d56a24b62b4831cd52e2",
+    "paper_data/validation/ro_m0p100/linear_N48_N56.json": "81f38f146fc848dbb06f7b525308bf5e76beb2416739ded8e3260181e0dcb146",
+    "paper_code/plot_figures.py": "98c2213c91183ff8de7fe7f1755c28596a42a2ca536d911100ce954e327517a3",
+    "paper_code/plot_wave_structure.py": "a54d800039a78187a72a67837cb4c52c5017874503876010927f769725bc4ea6",
+    "paper_code/plot_damping_response.py": "467a8c7df825e049f4a04cf746b3caa27e98455300b70250aab46b9983e11ee4"
+  },
+  "figure_mapping": {
+    "1": [
+      "branches.csv",
+      "scalar_results.csv",
+      "data/evidence.json",
+      "data/benchmark_ro_m1.json",
+      "data/benchmark_ro0751.json"
+    ],
+    "2": [
+      "data/wave_structure/projections.npz",
+      "data/wave_structure/metadata.json"
+    ],
+    "3": [
+      "scalar_results.csv",
+      "data/revision_diagnostics/common_diagnostics.json",
+      "data/benchmark_ro_m1.json",
+      "data/benchmark_ro0751.json"
+    ],
+    "4": [
+      "data/damping_response/profiles.npz",
+      "data/damping_response/metadata.json"
+    ],
+    "Table I": [
+      "scalar_results.csv"
+    ],
+    "Table II": [
+      "resolution_checks.csv"
+    ]
+  },
+  "table_II_evidence": {
+    "1-2": "benchmark_ro_m1 scalar comparisons",
+    "3": "benchmark_ro0751 endpoint scalar comparisons",
+    "4": "accepted Ro=-0.5 H4/H5 fixed-domain summaries; original fingerprints retained in private release audit",
+    "5": "matched field/local-reference N32 and N40 front comparisons",
+    "6": "accepted N32/N40 linear neutral summaries",
+    "7": "N48/N56 linear comparison scalars"
+  }
+}
